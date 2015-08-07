@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.makery.ide.view.RootLayoutController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+                  <MenuItem mnemonicParsing="false" text="New" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleSaveFile" text="Save" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleSaveAllFile" text="Save all" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Build">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#handleCompileCurrentFile" text="Build" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleCompileAllFiles" text="Build all" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleConstructProject" text="Create executable" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Project">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#handleNewProject" text="New project" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleSaveProject" text="Save" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleLoadProject" text="Load" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Properties" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleAddFileToProject" text="Add file to project" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleCloseProject" text="Close" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Tools">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+              </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+</BorderPane>
