@@ -6,6 +6,7 @@ import ch.makery.ide.model.Project;
 import ch.makery.ide.view.FilesOverviewController;
 import ch.makery.ide.view.ProjectEditDialogController;
 import ch.makery.ide.view.RootLayoutController;
+import ch.makery.ide.view.TerminalController;
 import ch.makery.ide.view.ToolBarController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -28,6 +29,8 @@ public class MainApp extends Application {
 		this.primaryStage.setTitle("IDE app");
 
 		initRootLayout();
+
+		showTerminal();
 
 	}
 
@@ -78,6 +81,28 @@ public class MainApp extends Application {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private boolean isTermShown = false;
+
+	public void showTerminal() {
+		try {
+			// Load person overview.
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/Terminal.fxml"));
+			BorderPane terminal = (BorderPane) loader.load();
+
+			// Set person overview into the center of root layout.
+			rootLayout.setBottom(terminal);
+			this.isTermShown = true;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void hideTerminal() {
+		this.rootLayout.setBottom(null);
+		this.isTermShown = false;
 	}
 
 	public void hideProject() {
@@ -148,5 +173,13 @@ public class MainApp extends Application {
 
 	public FilesOverviewController getFilesOverviewController() {
 		return filesOverviewController;
+	}
+
+	public void showHideTerm() {
+		if (this.isTermShown) {
+			this.hideTerminal();
+		} else {
+			this.showTerminal();
+		}
 	}
 }

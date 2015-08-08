@@ -46,7 +46,8 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Tools">
               <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" onAction="#handleShowHideTerm" text="Show/Hide Terminal" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleShowHideToolBox" text="Show/Hide Toolbox" />
               </items>
             </Menu>
           <Menu mnemonicParsing="false" text="Help">

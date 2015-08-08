@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.makery.ide.view.TerminalController">
+   <center>
+      <TextArea fx:id="textArea" prefHeight="100.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </TextArea>
+   </center>
+   <bottom>
+      <TextField fx:id="commandTextField" onKeyPressed="#handleEnterPressed" promptText="command" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>

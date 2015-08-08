@@ -92,19 +92,29 @@ public class RootLayoutController {
 	@FXML
 	private void handleCompileCurrentFile() {
 		Compiler c = new Compiler();
-		System.out.println(
-				c.build(this.mainApp.getFilesOverviewController().getCurrentFile(), this.mainApp.getCurrentProject()));
+		c.build(this.mainApp.getFilesOverviewController().getCurrentFile(), this.mainApp.getCurrentProject());
 	}
 
 	@FXML
 	private void handleCompileAllFiles() {
 		Compiler c = new Compiler();
-		System.out.println(c.build(this.mainApp.getCurrentProject()));
+		c.build(this.mainApp.getCurrentProject());
 	}
 
 	@FXML
 	private void handleConstructProject() {
 		Compiler c = new Compiler();
-		System.out.println(c.construct(this.mainApp.getCurrentProject()));
+		c.construct(this.mainApp.getCurrentProject());
 	}
+
+	@FXML
+	private void handleShowHideTerm() {
+		this.mainApp.showHideTerm();
+	}
+
+	@FXML
+	private void handleShowHideToolBox() {
+
+	}
+
 }

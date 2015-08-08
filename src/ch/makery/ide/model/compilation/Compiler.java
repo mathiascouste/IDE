@@ -11,6 +11,7 @@ import java.io.OutputStreamWriter;
 
 import ch.makery.ide.model.Project;
 import ch.makery.ide.model.SourceFile;
+import ch.makery.ide.view.TerminalController;
 
 public class Compiler {
 	public static final String CC = "g++";
@@ -18,9 +19,8 @@ public class Compiler {
 	public static final String BUILD = "-c";
 	public static final String OBJ = ".obj";
 
-	public String build(SourceFile src, Project pro) {
+	public void build(SourceFile src, Project pro) {
 		String[] spl = src.getName().split("\\.");
-		System.out.println();
 		if (spl[spl.length - 1].equals("cpp") || spl[spl.length - 1].equals("c")) {
 			String cmd = CC + " ";
 			cmd += OPT + " ";
@@ -29,51 +29,26 @@ public class Compiler {
 			cmd += "-o " + pro.getObjectDirectoryPath() + System.getProperty("file.separator") + spl[spl.length - 2]
 					+ OBJ;
 
-			return execute(cmd);
+			execute(cmd);
 		}
-		return "cannot compile this file";
 	}
 
-	private String execute(String cmd) {
-		System.out.println("EXEC : " + cmd);
-		String msg = "";
-		Runtime runtime = Runtime.getRuntime();
-		try {
-			Process proc = runtime.exec(cmd);
-			BufferedInputStream in = new BufferedInputStream(proc.getErrorStream());
-			BufferedOutputStream out = new BufferedOutputStream(proc.getOutputStream());
-			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out));
-
-			String line = null;
-			while ((line = reader.readLine()) != null) {
-				msg += line + "\n";
-			}
-
-			proc.waitFor();
-			proc.destroy();
-		} catch (IOException e) {
-			msg = e.getMessage();
-		} catch (InterruptedException e) {
-			msg = e.getMessage();
-		}
-		return msg;
+	private void execute(String cmd) {
+		TerminalController.getInstance().executeCommand(cmd);
 	}
 
-	public String build(Project pro) {
-		String message = "";
+	public void build(Project pro) {
 		for (SourceFile src : pro.getSourceFiles()) {
-			message += build(src, pro);
+			build(src, pro);
 		}
-		return message;
 	}
 
-	public String construct(Project pro) {
+	public void construct(Project pro) {
 		String cmd = CC + " ";
 		cmd += OPT + " ";
 		cmd += listObjFiles(pro.getObjectDirectoryPath(), OBJ);
 		cmd += "-o " + pro.getBuildDirectoryPath() + System.getProperty("file.separator") + pro.getExecutableName();
-		return execute(cmd);
+		execute(cmd);
 	}
 
 	private String listObjFiles(String objectDirectoryPath, String... endWith) {

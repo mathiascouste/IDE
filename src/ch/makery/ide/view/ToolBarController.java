@@ -31,7 +31,7 @@ public class ToolBarController {
 	@FXML
 	private void compile() {
 		Compiler c = new Compiler();
-		System.out.println(c.build(this.mainApp.getFilesOverviewController().getCurrentFile(), this.mainApp.getCurrentProject()));
+		c.build(this.mainApp.getFilesOverviewController().getCurrentFile(), this.mainApp.getCurrentProject());
 	}
 
 	/**
